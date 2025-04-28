@@ -59,7 +59,15 @@ export async function GET(request: NextRequest) {
     
     // Execute query with pagination
     const sort: any = {};
-    sort[sortBy] = sortOrder === 'asc' ? 1 : -1;
+    
+    // Handle different sort options
+    if (sortBy === 'relevance') {
+      // Default sorting by rating and experience
+      sort.rating = -1;
+      sort.experience = -1;
+    } else {
+      sort[sortBy] = sortOrder === 'asc' ? 1 : -1;
+    }
     
     const doctors = await Doctor.find(query)
       .sort(sort)

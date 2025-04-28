@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import FilterPanel from '@/components/filters/FilterPanel';
 import DoctorCard from '@/components/doctor/DoctorCard';
 import Pagination from '@/components/filters/Pagination';
+import SortSelect from '@/components/filters/SortSelect';
 
 // Define a simplified interface that matches our mock data structure
 interface Doctor {
@@ -311,22 +312,13 @@ export default async function DoctorsListingPage({
         
         <FilterPanel />
         
-        {/* Doctor count and sorting - This is just UI with no functionality as per requirements */}
+        {/* Doctor count and sorting */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
           <div className="text-gray-800 mb-2 md:mb-0 font-medium">
             Showing {doctors.length} out of {pagination.total} doctors
           </div>
           
-          <div className="flex items-center">
-            <span className="text-gray-800 mr-2 font-medium">Sort by:</span>
-            <select className="p-2 border rounded-md bg-white">
-              <option value="relevance">Relevance</option>
-              <option value="experience">Experience</option>
-              <option value="fee">Fee: Low to High</option>
-              <option value="fee-desc">Fee: High to Low</option>
-              <option value="rating">Rating</option>
-            </select>
-          </div>
+          <SortSelect />
         </div>
         
         {/* Doctors listing */}
